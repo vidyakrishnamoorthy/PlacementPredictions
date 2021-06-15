@@ -1,6 +1,46 @@
-import matplotlib.pyplot as plt
+def status_code(row):
+    if row['status'] == 'Placed':
+        return 1
+    else:
+        return 0
+
+
+def hsc_s_code(row):
+    if row['hsc_s'] == 'Commerce':
+        return 1
+    elif row['hsc_s'] == 'Science':
+        return 2
+    elif row['hsc_s'] == 'Arts':
+        return 3
+    else:
+        return 0
+
+
+def degree_t_code(row):
+    if row['degree_t'] == 'Comm&Mgmt':
+        return 1
+    elif row['degree_t'] == 'Sci&Tech':
+        return 2
+    elif row['degree_t'] == 'Others':
+        return 3
+    else:
+        return 0
+
+
+def specialisation_code(row):
+    if row['specialisation'] == 'Mkt&Fin':
+        return 1
+    elif row['specialisation'] == 'Mkt&HR':
+        return 2
+    else:
+        return 0
+
 
 def preprocessing(df):
+    df['status_code'] = df.apply(lambda row: status_code(row), axis = 1)
+    df['hsc_s_code'] = df.apply(lambda row: hsc_s_code(row), axis=1)
+    df['degree_t_code'] = df.apply(lambda row: degree_t_code(row), axis=1)
+    df['specialisation_code'] = df.apply(lambda row: specialisation_code(row), axis=1)
     return df
 
 
